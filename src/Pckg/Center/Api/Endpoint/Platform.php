@@ -45,4 +45,34 @@ class Platform extends Endpoint
         return $this->getAndDataResponse('platform/' . $identifier . '/status', 'platform');
     }
 
+    /**
+     * @param $identifier
+     *
+     * @return $this
+     */
+    public function getConfig($identifier)
+    {
+        return $this->getAndDataResponse('platform/' . $identifier . '/config', 'config');
+    }
+
+    /**
+     * @param $identifier
+     * @param $domains
+     *
+     * @return Platform
+     */
+    public function postDomains($identifier, $domains) {
+        return $this->postAndDataResponse($domains, 'platform/' . $identifier . '/domains', 'platform');
+    }
+
+    /**
+     * @param $identifier
+     * @param $app
+     *
+     * @return Platform
+     */
+    public function postApp($identifier, $app) {
+        return $this->postAndDataResponse(['app' => $app], 'platform/' . $identifier . '/app', 'platform');
+    }
+
 }
