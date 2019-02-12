@@ -61,7 +61,8 @@ class Platform extends Endpoint
      *
      * @return Platform
      */
-    public function postDomains($identifier, $domains) {
+    public function postDomains($identifier, $domains)
+    {
         return $this->postAndDataResponse($domains, 'platform/' . $identifier . '/domains', 'platform');
     }
 
@@ -71,8 +72,19 @@ class Platform extends Endpoint
      *
      * @return Platform
      */
-    public function postApp($identifier, $app) {
+    public function postApp($identifier, $app)
+    {
         return $this->postAndDataResponse(['app' => $app], 'platform/' . $identifier . '/app', 'platform');
+    }
+
+    /**
+     * @param $script
+     *
+     * @return Platform
+     */
+    public function runScript($script)
+    {
+        return $this->postAndDataResponse(['script' => $script], 'platform/' . $identifier . '/script', 'platform');
     }
 
 }
