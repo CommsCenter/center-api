@@ -82,7 +82,7 @@ class Platform extends Endpoint
      *
      * @return Platform
      */
-    public function runScript($script)
+    public function runScript($identifier, $script)
     {
         return $this->postAndDataResponse(['script' => $script], 'platform/' . $identifier . '/script', 'platform');
     }
