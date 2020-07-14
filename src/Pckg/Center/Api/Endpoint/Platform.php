@@ -87,4 +87,31 @@ class Platform extends Endpoint
         return $this->postAndDataResponse(['script' => $script], 'platform/' . $identifier . '/script', 'platform');
     }
 
+    /**
+     * @param $identifier
+     * @param $domain
+     * @return array|mixed|null
+     */
+    public function isCommsShopDomainFree(string $identifier, $domain)
+    {
+        return $this->postAndDataResponse(['domain' => $domain], 'platform/' . $identifier . '/comms-shop/validate', 'domain')
+            ->data();
+    }
+
+    /**
+     * @param $identifier
+     * @param $domain
+     * @return array|mixed|null
+     */
+    public function registerCommsShopDomain(string $identifier, $domain)
+    {
+        return $this->postAndDataResponse([
+            'domain' => $domain,
+            '_webhook' => [
+                'domain:registered' => 'https://' . $identifier . '.id.startcomms.com/api/webhook/comms-shop/registered'
+            ],
+        ], 'platform/' . $identifier . '/comms-shop/register', 'domain')
+            ->data();
+    }
+
 }
