@@ -1,6 +1,7 @@
 <?php namespace Pckg\Center\Api\Endpoint;
 
 use Pckg\Api\Endpoint;
+use Pckg\Collection;
 
 /**
  * Class Invoice
@@ -114,4 +115,21 @@ class Platform extends Endpoint
             ->data();
     }
 
+    public function getCommsStores(): Collection
+    {
+        $api = $this->getApi();
+        $this->getAndDataResponse('platform');
+
+        return collect($api->getApiResponse('platforms'))->map(fn($data) => new Platform($api, $data));
+    }
+
+    public function makeBackup($id, array $hook = [])
+    {
+        $api = $this->getApi();
+        $this->postAndDataResponse([
+            'hooks' => $hooks,
+        ], 'platform/' . $id . '/backup');
+
+        return $api->getApiResponse('backup');
+    }
 }

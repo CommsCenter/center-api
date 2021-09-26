@@ -29,6 +29,7 @@ class Api extends PckgApi
                 'X-Center-Api-Key' => $this->apiKey,
             ],
             RequestOptions::TIMEOUT => 15,
+            RequestOptions::VERIFY => false,
         ];
     }
 
