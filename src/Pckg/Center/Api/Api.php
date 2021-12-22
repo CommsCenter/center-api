@@ -44,9 +44,9 @@ class Api extends PckgApi
     /**
      * @return Platform
      */
-    public function platform()
+    public function platform(array $data = [])
     {
-        return new Platform($this);
+        return new Platform($this, $data);
     }
 
 }

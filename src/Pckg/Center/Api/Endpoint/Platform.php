@@ -7,6 +7,11 @@ use Pckg\Collection;
  * Class Invoice
  *
  * @package Pckg\Pendo\Api\Endpoint
+ * @property int $id
+ * @property string $name
+ * @property string $domain
+ * @property string $domains
+ * @property string $identifier
  */
 class Platform extends Endpoint
 {
@@ -62,9 +67,20 @@ class Platform extends Endpoint
      *
      * @return Platform
      */
-    public function postDomains($identifier, $domains)
+    public function postDomains(string $identifier, $domains)
     {
         return $this->postAndDataResponse($domains, 'platform/' . $identifier . '/domains', 'platform');
+    }
+
+    /**
+     * @param $identifier
+     * @param $domains
+     *
+     * @return Platform
+     */
+    public function postChannel(string $identifier, array $data)
+    {
+        return $this->postAndDataResponse($data, 'platform/' . $identifier . '/channel', 'platform');
     }
 
     /**
@@ -86,6 +102,16 @@ class Platform extends Endpoint
     public function runScript($identifier, $script)
     {
         return $this->postAndDataResponse(['script' => $script], 'platform/' . $identifier . '/script', 'platform');
+    }
+
+    /**
+     * @param $script
+     */
+    public function getStats()
+    {
+        $this->getApi()->getApi('platform/' . $this->id . '/stats');
+
+        return $this->getApi()->getApiResponse('stats');
     }
 
     /**
@@ -123,13 +149,19 @@ class Platform extends Endpoint
         return collect($api->getApiResponse('platforms'))->map(fn($data) => new Platform($api, $data));
     }
 
-    public function makeBackup($id, array $hook = [])
+    public function makeBackup($id)
     {
         $api = $this->getApi();
-        $this->postAndDataResponse([
-            'hooks' => $hooks,
-        ], 'platform/' . $id . '/backup');
+        $this->postAndDataResponse([], 'platform/' . $id . '/backup/create');
 
-        return $api->getApiResponse('backup');
+        return $api->getApiResponse();
+    }
+
+    public function restoreBackup($id)
+    {
+        $api = $this->getApi();
+        $this->postAndDataResponse([], 'platform/' . $id . '/backup/restore');
+
+        return $api->getApiResponse();
     }
 }
