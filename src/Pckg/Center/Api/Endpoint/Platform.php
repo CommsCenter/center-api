@@ -74,6 +74,16 @@ class Platform extends Endpoint
 
     /**
      * @param $identifier
+     *
+     * @return ?string
+     */
+    public function getChannel()
+    {
+        return $this->getAndDataResponse('platform/' . $this->identifier . '/channel', 'channel');
+    }
+
+    /**
+     * @param $identifier
      * @param $domains
      *
      * @return Platform
