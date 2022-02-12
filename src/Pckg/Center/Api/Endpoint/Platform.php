@@ -12,6 +12,7 @@ use Pckg\Collection;
  * @property string $domain
  * @property string $domains
  * @property string $identifier
+ * @property string $branch
  */
 class Platform extends Endpoint
 {
@@ -84,13 +85,23 @@ class Platform extends Endpoint
 
     /**
      * @param $identifier
+     *
+     * @return ?bool
+     */
+    public function softDeepDelete()
+    {
+        return $this->getAndDataResponse('platform/' . $this->identifier . '/soft-deep-delete', 'success');
+    }
+
+    /**
+     * @param $identifier
      * @param $domains
      *
      * @return Platform
      */
-    public function postChannel(string $identifier, array $data)
+    public function postChannel(int $id, array $data)
     {
-        return $this->postAndDataResponse($data, 'platform/' . $identifier . '/channel', 'platform');
+        return $this->postAndDataResponse($data, 'platform/' . $id . '/channel', 'platform');
     }
 
     /**
