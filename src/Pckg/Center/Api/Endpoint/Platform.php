@@ -80,7 +80,7 @@ class Platform extends Endpoint
      */
     public function getChannel()
     {
-        return $this->getAndDataResponse('platform/' . $this->identifier . '/channel', 'channel');
+        return $this->getAndDataResponse('platform/' . $this->id . '/channel', 'platform')->channel;
     }
 
     /**
