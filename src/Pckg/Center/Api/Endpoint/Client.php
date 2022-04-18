@@ -1,4 +1,6 @@
-<?php namespace Pckg\Center\Api\Endpoint;
+<?php
+
+namespace Pckg\Center\Api\Endpoint;
 
 use Pckg\Api\Endpoint;
 
@@ -9,10 +11,8 @@ use Pckg\Api\Endpoint;
  */
 class Client extends Endpoint
 {
-
     /**
      * @var string
      */
     protected $path = 'client';
-
 }

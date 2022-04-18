@@ -1,4 +1,6 @@
-<?php namespace Pckg\Center\Api;
+<?php
+
+namespace Pckg\Center\Api;
 
 use GuzzleHttp\RequestOptions;
 use Pckg\Api\Api as PckgApi;
@@ -12,12 +14,8 @@ use Pckg\Center\Api\Endpoint\Platform;
  */
 class Api extends PckgApi
 {
-
     /**
      * Api constructor.
-     *
-     * @param $endpoint
-     * @param $apiKey
      */
     public function __construct(?string $endpoint, ?string $apiKey)
     {
@@ -48,5 +46,4 @@ class Api extends PckgApi
     {
         return new Platform($this, $data);
     }
-
 }

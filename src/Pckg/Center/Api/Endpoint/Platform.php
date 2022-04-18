@@ -1,4 +1,6 @@
-<?php namespace Pckg\Center\Api\Endpoint;
+<?php
+
+namespace Pckg\Center\Api\Endpoint;
 
 use Pckg\Api\Endpoint;
 use Pckg\Collection;
@@ -16,7 +18,6 @@ use Pckg\Collection;
  */
 class Platform extends Endpoint
 {
-
     /**
      * @var string
      */
@@ -43,8 +44,6 @@ class Platform extends Endpoint
     }
 
     /**
-     * @param $identifier
-     *
      * @return $this
      */
     public function getStatus($identifier)
@@ -53,8 +52,6 @@ class Platform extends Endpoint
     }
 
     /**
-     * @param $identifier
-     *
      * @return $this
      */
     public function getConfig($identifier)
@@ -63,9 +60,6 @@ class Platform extends Endpoint
     }
 
     /**
-     * @param $identifier
-     * @param $domains
-     *
      * @return Platform
      */
     public function postDomains(string $identifier, $domains)
@@ -74,8 +68,6 @@ class Platform extends Endpoint
     }
 
     /**
-     * @param $identifier
-     *
      * @return ?string
      */
     public function getChannel()
@@ -84,8 +76,6 @@ class Platform extends Endpoint
     }
 
     /**
-     * @param $identifier
-     *
      * @return ?bool
      */
     public function softDeepDelete()
@@ -94,9 +84,6 @@ class Platform extends Endpoint
     }
 
     /**
-     * @param $identifier
-     * @param $domains
-     *
      * @return Platform
      */
     public function postChannel(int $id, array $data)
@@ -105,9 +92,6 @@ class Platform extends Endpoint
     }
 
     /**
-     * @param $identifier
-     * @param $app
-     *
      * @return Platform
      */
     public function postApp($identifier, $app)
@@ -116,8 +100,6 @@ class Platform extends Endpoint
     }
 
     /**
-     * @param $script
-     *
      * @return Platform
      */
     public function runScript($identifier, $script)
@@ -125,9 +107,6 @@ class Platform extends Endpoint
         return $this->postAndDataResponse(['script' => $script], 'platform/' . $identifier . '/script', 'platform');
     }
 
-    /**
-     * @param $script
-     */
     public function getStats()
     {
         $this->getApi()->getApi('platform/' . $this->id . '/stats');
@@ -136,8 +115,6 @@ class Platform extends Endpoint
     }
 
     /**
-     * @param $identifier
-     * @param $domain
      * @return array|mixed|null
      */
     public function isCommsShopDomainFree(string $identifier, $domain)
@@ -147,8 +124,6 @@ class Platform extends Endpoint
     }
 
     /**
-     * @param $identifier
-     * @param $domain
      * @return array|mixed|null
      */
     public function registerCommsShopDomain(string $identifier, $domain)
